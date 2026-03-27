@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>対訳資料 — Nachtlied / Friede auf Erden</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+JP:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --ink-mid: #3d342a;
+    --ink-light: #7a6d62;
+    --ink-faint: #b8ada4;
+    --accent: #8b4a2a;
+    --accent-soft: #c4896a;
+    --paper: #f5f0e8;
+    --paper-warm: #ede6d8;
+    --rule: #d4c9bc;
+    --blue-gloss: #3a5a7c;
+    --blue-muted: #6a8aac;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Serif JP', serif;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 27px,
+        rgba(180,160,140,0.07) 27px,
+        rgba(180,160,140,0.07) 28px
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 64px 48px 80px;
+  }
+
+  /* Piece title */
+  .piece {
+    margin-bottom: 80px;
+  }
+  .piece-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1.5px solid var(--rule);
+    position: relative;
+  }
+  .piece-title::after {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 1px;
+    background: var(--accent-soft);
+    margin-top: 10px;
+  }
+
+  /* Stanza */
+  .stanza {
+    margin-bottom: 52px;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.6s ease forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .stanza-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .stanza-num {
+    font-family: 'EB Garamond', serif;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .stanza-rule {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--rule), transparent);
+  }
+
+  /* Line block */
+  .line-block {
+    margin-bottom: 6px;
+    padding: 4px 0;
+    transition: background 0.2s;
+  }
+  .line-block:hover {
+    background: rgba(139,74,42,0.03);
+    border-radius: 4px;
+  }
+
+  .line-row {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+
+  .word-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+
+  .word-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 3px;
+    min-width: 0;
+  }
+
+  .w-orig {
+    font-family: 'EB Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+
+  .w-mean {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 10.5px;
+    font-weight: 300;
+    color: var(--blue-gloss);
+    margin-top: 2px;
+    white-space: nowrap;
+    line-height: 1.3;
+  }
+
+  .w-ipa {
+    font-family: 'Crimson Pro', serif;
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--ink-faint);
+    margin-top: 1px;
+    white-space: nowrap;
+  }
+
+  .trans-text {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--accent-soft);
+    white-space: nowrap;
+    padding-left: 18px;
+    padding-bottom: 3px;
+    margin-left: auto;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: var(--ink-faint);
+    text-align: center;
+    line-height: 1.8;
+  }
+
+  /* Print button */
+  .print-btn {
+    display: block;
+    margin: 0 auto 28px;
+    padding: 6px 20px;
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-light);
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 20px;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .print-btn:hover { border-color: var(--accent-soft); color: var(--accent); }
+
+  /* Print */
+  @media print {
+    :root {
+      --ink: #000;
+      --ink-mid: #000;
+      --ink-light: #000;
+      --ink-faint: #000;
+      --accent: #000;
+      --accent-soft: #000;
+      --rule: #000;
+      --blue-gloss: #000;
+      --blue-muted: #000;
+    }
+    @page { size: A4 portrait; margin: 5mm 13mm 5mm 13mm; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { background: white !important; }
+    body::before { display: none; }
+    .print-btn { display: none; }
+    .page { max-width: 100%; padding: 0; }
+    .piece { margin-bottom: 0; }
+    .piece-title { font-size: 16px; margin-bottom: 2mm; padding-bottom: 1.5mm; }
+    .piece-title::after { margin-top: 4px; }
+    .piece + .piece { margin-top: 0; page-break-before: always; }
+    .stanza { margin-bottom: 2mm; opacity: 1; transform: none; animation: none; }
+    .stanza-header { margin-bottom: 0.8mm; }
+    .stanza-num { font-size: 8.5px; }
+    .line-block { margin-bottom: 0.4mm; padding: 0; }
+    .line-block:hover { background: none; }
+    .w-orig { font-size: 14.5px; line-height: 1.2; }
+    .w-mean { font-size: 7.5px; margin-top: 1px; line-height: 1.2; }
+    .w-ipa  { font-size: 9px; margin-top: 0; }
+    .word-unit { padding: 0 2px; }
+    .trans-text { font-size: 10.5px; padding-left: 8px; padding-bottom: 0; }
+    .footer { margin-top: 2mm; padding-top: 1.5mm; font-size: 8px; }
+  }
+
+  /* Commentary */
+  .commentary {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--rule);
+  }
+  .commentary-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    margin-bottom: 16px;
+    letter-spacing: 0.04em;
+  }
+  .commentary h3 {
+    font-family: 'EB Garamond', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    margin: 22px 0 8px;
+    letter-spacing: 0.02em;
+  }
+  .commentary h4 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--ink);
+    margin: 16px 0 6px;
+  }
+  .commentary p {
+    font-size: 12.5px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.85;
+    margin-bottom: 10px;
+  }
+  .commentary table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 16px;
+  }
+  .commentary th {
+    font-family: 'EB Garamond', serif;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--ink-light);
+    border-bottom: 1px solid var(--rule);
+    padding: 4px 10px;
+    text-align: left;
+  }
+  .commentary td {
+    font-size: 11.5px;
+    color: var(--ink-mid);
+    padding: 5px 10px;
+    border-bottom: 1px solid rgba(180,160,140,0.2);
+    vertical-align: top;
+    line-height: 1.65;
+  }
+  .commentary blockquote {
+    border-left: 2px solid var(--accent-soft);
+    padding: 6px 0 6px 14px;
+    margin: 10px 0;
+    font-style: italic;
+    font-size: 12px;
+    color: var(--ink-light);
+    line-height: 1.75;
+  }
+  .commentary ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 8px 0 12px;
+  }
+  .commentary li {
+    font-size: 12px;
+    color: var(--ink-mid);
+    line-height: 1.75;
+    padding-left: 1.2em;
+    text-indent: -1.2em;
+    margin-bottom: 4px;
+  }
+  .commentary li::before {
+    content: '― ';
+    color: var(--accent-soft);
+  }
+  .commentary hr {
+    border: none;
+    border-top: 1px dashed var(--rule);
+    margin: 18px 0;
+  }
+
+  @media print {
+    .commentary { margin-top: 3mm; padding-top: 2mm; }
+    .commentary-title { font-size: 12px; margin-bottom: 2mm; }
+    .commentary h3 { font-size: 10.5px; margin: 3mm 0 1mm; }
+    .commentary h4 { font-size: 9.5px; margin: 2mm 0 0.5mm; }
+    .commentary p, .commentary td, .commentary li { font-size: 8.5px; line-height: 1.65; }
+    .commentary th { font-size: 8.5px; padding: 2px 6px; }
+    .commentary td { padding: 3px 6px; }
+    .commentary blockquote { font-size: 8.5px; padding-left: 8px; margin: 1.5mm 0; }
+    .commentary hr { margin: 2mm 0; }
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 32px 20px 48px; }
+    .piece-title { font-size: 22px; }
+    .w-orig { font-size: 17px; }
+    .word-unit { padding: 0 5px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <button class="print-btn" onclick="window.print()">印刷 / A4 で保存</button>
+
+  <section class="piece">
+    <div class="piece-title">Nachtlied</div>
+    <main id="content-1"></main>
+
+    <div class="commentary">
+      <div class="commentary-title">解説</div>
+
+      <h3>概要</h3>
+      <p>これはドイツ語の<strong>夜の祈り（Nachtgebet / Abendsegen）</strong>の詩です。就寝前に神への加護を求める内容で、宗教改革期以降のルター派・改革派讃美歌の伝統に属するテキストです。作者については諸説あり確定していませんが、16世紀の改革派讃美歌集との関連が指摘されています。</p>
+
+      <hr>
+
+      <h3>構造</h3>
+      <p>全体は<strong>3つの連（Strophe）</strong>から成り、就寝前の祈りとして完結した神学的な流れを持ちます。</p>
+      <table>
+        <thead><tr><th>連</th><th>主題</th><th>神学的機能</th></tr></thead>
+        <tbody>
+          <tr><td>第1連</td><td>夜が来た。神の御旨のままに休ませてください</td><td><strong>委託</strong>：自らを神の手に委ねる</td></tr>
+          <tr><td>第2連</td><td>悪霊を退けて守ってください。天使を遣わしてください</td><td><strong>保護</strong>：霊的・肉体的守護を求める</td></tr>
+          <tr><td>第3連</td><td>善い思いで眠り、喜んで目覚め、神の栄光のために生きさせてください</td><td><strong>賛美へ向かう決意</strong>：朝への希望と奉仕の誓い</td></tr>
+        </tbody>
+      </table>
+      <p>この三部構造——委託・保護・賛美——は、ルター派の夜の礼拝神学の典型的な骨格をなしています。</p>
+
+      <hr>
+
+      <h3>ルター派讃美歌の伝統と歴史的背景</h3>
+      <p>宗教改革（16世紀）は礼拝における<strong>会衆の歌</strong>を根本から刷新しました。ルターは1524年に最初の讃美歌集を編纂し、ドイツ語による祈りと歌を日常礼拝の中心に据えました。特に注目すべきは<strong>夜の祈り（Komplet / Abendgebet）の伝統</strong>です。カトリックの修道院では「終課（Compline）」として夜ごと歌われてきた就寝前の礼拝が、宗教改革後は平易なドイツ語の形で家庭・教会双方に根付きました。寝るという行為を「小さな死」として神に委託する神学——これは中世以来連綿と続く考え方です。</p>
+      <p>語形の短縮（<em>sein'm</em>、<em>G'leit</em>、<em>Ruh'</em> など）や古風な接続法（<em>Gott walt's</em>）は、16〜17世紀のドイツ語讃美歌に特有の<strong>韻律上の様式</strong>であり、テキストがその時代の礼拝実践に根ざしていることを示しています。</p>
+
+      <hr>
+
+      <h3>神学的テーマ</h3>
+
+      <h4>1. 委託（Commendatio）</h4>
+      <p><em>Gott walt's nach sein'm Wohlgefallen</em>（神がみ心のままに司ってくださいますように）という表現は、単なる就寝の挨拶ではなく、<strong>自己の意志を神の主権に明け渡す信仰告白</strong>です。眠りという無防備な状態を恐れとしてではなく、信頼の場として受け取る姿勢が貫かれています。</p>
+
+      <h4>2. 保護（Protektion）——詩篇91篇との深い関係</h4>
+      <p>第2連は<strong>詩篇91篇</strong>を直接的な典拠としています。</p>
+      <blockquote>「主は羽をもってあなたを覆い、その翼の下にあなたは避け所を得る」（詩篇91:4）<br>→ <em>Schirm beid Leib und Seel' unter deine Flügel</em></blockquote>
+      <blockquote>「主はあなたのために天使たちに命じて、あなたの行く道を守らせる」（詩篇91:11）<br>→ <em>Send' uns dein' Engel!</em></blockquote>
+      <p><em>unreine Geister</em>（不浄な霊）を退けるよう求める祈りも、夜を霊的な危険の時間として意識した宗教改革期の信仰観を反映しており、単なる比喩ではなく切実な現実感覚に根ざしたものでした。</p>
+
+      <h4>3. 賛美（Lob）——朝への希望</h4>
+      <p>第3連は翌朝への視点で締めくくられます。善い思いで眠り（<em>mit guten Gedanken</em>）、喜びをもって目覚め（<em>fröhlich aufwachen</em>）、全ての行いと言葉を神の栄光に向ける（<em>zu dein'm Preis richten</em>）——夜の祈りが<strong>目覚めた後の生き方までを視野に入れた包括的な献身</strong>であることが示されています。</p>
+
+      <hr>
+
+      <h3>典礼・礼拝の文脈</h3>
+      <p><strong>家庭礼拝（Hausandacht）</strong>：ルターの『小教理問答』（1529年）には朝と夜の祈りが明示されており、就寝前に家族で神に一日を委ねる習慣は広く根付いていました。<strong>教会の夕礼拝・終課（Vesper / Komplet）</strong>においても、こうした祈りの詩は中心的な役割を担いました。「私」ではなく一貫して「私たち（<em>uns / wir</em>）」で語られていることが、その共同体的な次元を端的に示しています。</p>
+
+      <hr>
+
+      <h3>まとめ</h3>
+      <p>「Die Nacht ist kommen」は、詩篇91篇の保護のイメージ、夜を「小さな死」として神に委ねる神学、そして目覚めの後の賛美へと向かう希望——これら三つの層を一つの祈りの詩として結晶させた作品です。短い詩ながら、その背後には数世紀にわたる礼拝の記憶が息づいています。</p>
+    </div>
+  </section>
+
+  <section class="piece">
+    <div class="piece-title">Friede auf Erden</div>
+    <main id="content-2"></main>
+
+    <div class="commentary">
+      <div class="commentary-title">解説</div>
+
+      <h3>基本情報</h3>
+      <p>これはスイスの作家<strong>コンラート・フェルディナント・マイヤー（Conrad Ferdinand Meyer, 1825–1898）</strong>の詩「Friede auf Erden（地に平和を）」です。アルノルト・シェーンベルクが1906–07年に合唱曲（Op.13）として作曲し、1911年にウィーンで初演されたことで、合唱界では特によく知られています。</p>
+      <p>マイヤーはツヴィングリ派・カルヴァン主義の伝統の中で育ち、歴史上の人物の葛藤を通じて不正義・良心・正義の問いを作品の中心に置き続けたスイス・リアリズムを代表する作家です。</p>
+
+      <hr>
+
+      <h3>神学的背景：「シャローム」とは何か</h3>
+      <p>この詩を理解するためにまず押さえたいのが、<strong>シャローム（שָׁלוֹם, shalom）</strong>という概念です。ドイツ語の <em>Friede</em>（平和）はゲルマン語固有の語（古高ドイツ語 <em>fridu</em>＝保護・安全）ですが、聖書のドイツ語訳（ルター訳）においてヘブライ語 <em>shalom</em> の訳語として定着した結果、聖書的文脈では <em>shalom</em> の神学的な豊かさを担う言葉として機能しています。</p>
+      <p><em>shalom</em> は単なる「戦争のない状態」ではなく、<strong>神と人間・人間と人間・人間と自然の間の全き調和・完全性・秩序の回復</strong>を意味します。この詩全体は、「シャロームはすでに告げられたか（第1連）、しかしなぜ実現しないのか（第2連）、それでも信じられるか（第3連）、いつ完成するのか（第4連）」という神学的問いの構造を持ちます。</p>
+
+      <hr>
+
+      <h3>各連の解説</h3>
+
+      <h4>第1連 ― 天使の告知（降誕の夜）</h4>
+      <blockquote>羊飼いたちが群れを残し、天使の言葉を低い門をくぐって母と御子のもとへ運んでいく間、天の使いたちは星の空で歌い続けた。「平和を、平和を！地の上に！」</blockquote>
+      <p><strong>テキスト読解</strong></p>
+      <ul>
+        <li>「niedre Pforte（低い門）」は馬小屋の入口であり、同時に<strong>謙虚さ・受肉の低さ</strong>を象徴</li>
+        <li>天使たちは星の空で歌い<strong>続ける</strong>（<em>fort</em> の反復）</li>
+        <li>"Friede, Friede! auf der Erde!" — <strong>感嘆符つきの確信に満ちた宣言</strong></li>
+      </ul>
+      <p><strong>聖書典拠</strong></p>
+      <p>この連はルカによる福音書 2章の降誕物語に依拠しています（ルカ 2:14「いと高きところには神に栄光があり、地には平和があり、神の御心に叶う人々に恵みがあるように」）。</p>
+      <p><strong>神学的概念：受肉（Inkarnation）とケノーシス</strong></p>
+      <p><em>niedre Pforte</em> が象徴するのは、神が低いところに来たという<strong>ケノーシス（自己空虚化）</strong>の神学です（フィリピ 2:7「ご自身を空にして、僕の形をとり」）。神の子が馬小屋に生まれたという出来事は「神が人間の次元に降った」という神学的宣言であり、だからこそ天使の宣言も <em>auf der Erde</em>（地の上に）という言葉を強調します。</p>
+
+      <hr>
+
+      <h4>第2連 ― 歴史の現実（流血と戦争）</h4>
+      <blockquote>天使たちがそう告げて以来、どれほど多くの流血が、鎧を着た騎馬の争いによって引き起こされたことか！幾多の聖夜に、霊たちの合唱は恐る恐る、切に懇願し、静かに嘆きながら歌った。「平和を、平和を……地の上に」</blockquote>
+      <p><strong>テキスト読解</strong></p>
+      <ul>
+        <li>天使の歌い方が変化：<em>zagend</em>（おずおずと）→ <em>dringlich flehend</em>（切に懇願）→ <em>leis verklagend</em>（静かに嘆いて）</li>
+        <li>重要：<strong>感嘆符が消え、読点（…）に変わる</strong> → 確信から嘆願・疑念へ</li>
+      </ul>
+      <p><strong>聖書典拠・神学的概念：嘆きの詩篇と「神義論」</strong></p>
+      <p>第2連が突きつけるのは、神学で言う<strong>テオディツェー（神義論, Theodizee）</strong>の問題です。「神は善であり全能であるのに、なぜ世界には悪と苦しみが溢れているのか」——この問いは聖書そのものにも刻まれています（詩篇 13:2「主よ、いつまでですか。あなたは永遠に忘れておられるのですか」）。天使たちが <em>zagend</em> 歌うことは詩篇の<strong>ラメント（嘆きの詩）</strong>の伝統に重なり、<em>Streit auf wildem Pferde</em> のイメージは黙示録 6章の<strong>四騎士</strong>とも響き合います。</p>
+
+      <hr>
+
+      <h4>第3連 ― 信仰の核心（正義への希望）</h4>
+      <blockquote>だが、弱者がいつまでも傲慢な殺戮の獲物に成り果てるわけではない、という永遠の信仰がある。殺戮と惨禍の中にも何か正義のようなものが織り成され、地の平和を求める王国が建ちあがろうとしている。</blockquote>
+      <p><strong>テキスト読解</strong></p>
+      <ul>
+        <li><em>ew'ger Glaube</em>（永遠の信仰）— 詩の転換点。歴史的悲嘆から<strong>信仰の宣言</strong>へ</li>
+        <li><em>Etwas wie Gerechtigkeit / Webt und wirkt</em> — 断言を避けつつも希望を語る絶妙な表現。<em>webt</em>（織る）に歴史の布を織るという暗喩</li>
+        <li><em>sich erbauen</em> は再帰動詞：主語は人間ではなく「王国そのもの」が建ちあがる構造</li>
+      </ul>
+      <p><strong>聖書典拠</strong></p>
+      <p>イザヤ書のメシア的平和のビジョン（イザヤ 11:5「正義は彼の腰の帯となり」）と対話しています。<em>der Schwache</em>（弱者）の保護というテーマは旧約聖書を貫くモチーフでもあります（詩篇 9:10「主は虐げられた人の砦」）。</p>
+      <p><strong>神学的概念：神の国（Reich Gottes）</strong></p>
+      <p><em>ein Reich will sich erbauen</em> は<strong>神の国（Reich Gottes）</strong>の概念と響き合います。アウグスティヌスは「神の国」と「地の国」が歴史の中で混在し完全な実現は終末まで待つしかないと考え、カルヴァンは神の主権が政治・社会にも及ぶことを強調しました。ただしここで描かれているのは人間の能動的努力というよりも、正義の秩序が自ずと現れ出るというイメージに近く、いずれの神学的立場とも単純には重なりません。</p>
+
+      <hr>
+
+      <h4>第4連 ― 終末論的成就（未来の王国）</h4>
+      <blockquote>それはやがて形を成し、その聖なる使命を果たし、危険なき武器を鍛え、正義のための炎の剣を持ち、力強い息子たちとともに花開く王族の血筋が、高らかにラッパを鳴り響かせるだろう。「平和を、平和を、地の上に！」</blockquote>
+      <p><strong>テキスト読解</strong></p>
+      <ul>
+        <li><em>Flammenschwerter für das Recht</em> — 受動的平和ではなく、<strong>戦い取られる平和</strong></li>
+        <li><em>helle Tuben dröhnen</em> — 第2連の <em>leis</em>（静かに）と対比する<strong>勝利の音響</strong></li>
+        <li>末行では感嘆符も読点もなく、淡々と確信の平和が告げられる → <strong>成就・完成の静けさ</strong></li>
+      </ul>
+      <p><strong>聖書典拠</strong></p>
+      <p><em>helle Tuben</em>（明るいラッパ）は黙示録のラッパのモチーフを呼び起こしますが（黙示録 8–11章）、ここでは審判ではなく<strong>平和の勝利宣言</strong>として鳴り響きます。<em>königlich Geschlecht</em>（王族の血筋）はイザヤ書「エッサイの株から一つの芽が萌え出で」（イザヤ 11:1）とも響き合います。また <em>Flammenschwerter</em>（炎の剣）はエフェソ書の「霊の剣」（エフェソ 6:17）や黙示録の言葉による剣の象徴とも対照的に読めます。</p>
+      <p><strong>神学的概念：終末論（Eschatologie）― 希望としての未来</strong></p>
+      <p>第4連の時制は一貫して未来です。神の国は「すでに（already）」始まっているが「いまだ（not yet）」完成していない、という<strong>終末論的留保</strong>の構造です。モルトマンは『希望の神学』（1964）で現在の苦しみの只中にあっても神の約束に基づいて未来へ向かう信仰の運動を論じました。また <em>Waffen schmieden ohne Fährde</em> は「剣を鋤に打ち直す」（イザヤ 2:4）を反転させ、武器を正義のために鍛え直すことで平和を勝ち取るという構造を選んでいます。</p>
+
+      <hr>
+
+      <h3>詩全体の構造的ポイント</h3>
+      <table>
+        <thead><tr><th>連</th><th>時制</th><th>平和の表現</th><th>感情</th><th>神学的モチーフ</th></tr></thead>
+        <tbody>
+          <tr><td>第1連</td><td>過去（降誕の夜）</td><td>Friede<strong>!</strong></td><td>喜び・確信</td><td>ケノーシス・受肉・天使の告知</td></tr>
+          <tr><td>第2連</td><td>歴史的現在</td><td>Friede <strong>…</strong></td><td>嘆き・懇願</td><td>神義論・ラメント・黙示的騎士</td></tr>
+          <tr><td>第3連</td><td>現在→未来</td><td>（直接表現なし）</td><td>信仰・希望</td><td>神の国・正義・弱者保護</td></tr>
+          <tr><td>第4連</td><td>未来（終末的）</td><td>Friede（完成）</td><td>勝利・成就</td><td>終末論的希望・メシア的イメージ</td></tr>
+        </tbody>
+      </table>
+      <p>句読点の変化だけで感情の弧を描く精密な詩的構造でありながら、同時に聖書神学の時間軸（降誕→歴史→希望→終末）をそのまま辿っています。</p>
+
+      <hr>
+
+      <h3>キリスト教思想史との対話</h3>
+      <p>マイヤーがこの詩を書いた19世紀後半は神学史においても重要な転換期でした。<strong>リッチュル学派</strong>（アルブレヒト・リッチュル, 1822–1889）は「神の国」を倫理的・社会的共同体の実現として捉え、歴史の中で進歩的に実現されるものと考えました。マイヤーの第3・4連の楽観的な未来像には、この時代のプロテスタント的歴史楽観主義の空気が反映されています。</p>
+      <p>一方でこの楽観主義は、第一次世界大戦後に<strong>弁証法神学（カール・バルト）</strong>によって根本から問い直されることになります。バルトは「人間の努力によって神の国が来る」という考えを批判し、神の国はあくまでも神の主権的行為によってのみ実現されると主張しました。シェーンベルクがこの詩を作曲した1906–07年は、ちょうどその歴史的転換点の直前にあたります。</p>
+
+      <hr>
+
+      <h3>シェーンベルク版との関係</h3>
+      <p>シェーンベルクは1906–07年にこの詩に曲をつけました（Op.13）。<strong>後期ロマン派的な調性の枠内</strong>にありながら半音階的・複雑な和声を用いており、協和音と不協和音、ホモフォニーとポリフォニーの対比によって理想の平和と現実の不和を描いています。これはシェーンベルクが調性的な様式で書いた最後の作品のひとつです。</p>
+      <p>シェーンベルクは1923年に指揮者ヘルマン・シェルヒェンへの書簡で、この曲を「混声合唱のための幻想（Illusion）」と振り返り、作曲当時は人間同士の純粋な調和が実現可能だと信じていたが今となってはそれが幻想であったと認識している、と記しています。詩が宣言する平和への希望と、後年のこの省察との間の緊張は、神義論と終末論的希望の神学的緊張そのものでもあります。なお合唱団が音程を保てなかったことを受け、1911年の初演に向けて管弦楽伴奏版も作成しました。</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+const dataNachtlied = [
+  { stanza: "第一連" },
+  { words:[["Die","その","/diː/"],["Nacht","夜","/naxt/"],["ist","〜だ","/ɪst/"],["kommen,","来た","/ˈkɔmən/"]], jp:"夜が訪れた、" },
+  { words:[["Drin","その中で","/drɪn/"],["wir","私たちは","/viːɐ/"],["ruhen","休む","/ˈruːən/"],["sollen;","べき","/ˈzɔlən/"]], jp:"私たちが憩うべき夜が。" },
+  { words:[["Gott","神が","/ɡɔt/"],["walt's,","治め給え","/valts/"],["zum","〜のために","/tsʊm/"],["Frommen","益・善","/ˈfrɔmən/"]], jp:"神がその恵みのために御心のままに統べ治め、" },
+  { words:[["Nach","〜に従い","/naːx/"],["sein'm","御自身の","/zaɪnəm/"],["Wohlgefallen,","御意・よろこび","/ˈvoːlɡəfalən/"]], jp:"神の御意のままに。" },
+  { words:[["Dass","〜するように","/das/"],["wir","私たちが","/viːɐ/"],["uns","我々を","/ʊns/"],["legen","横たえる","/ˈleːɡən/"]], jp:"私たちが身を横たえられるように、" },
+  { words:[["In","〜の中に","/ɪn/"],["sein'm","御自身の","/zaɪnəm/"],["G'leit","守護","/ɡlaɪt/"],["und","そして","/ʊnt/"],["Segen,","祝福","/ˈzeːɡən/"]], jp:"神の導きと祝福の中に、" },
+  { words:[["Der","〜の","/deːɐ/"],["Ruh'","安らぎ","/ruː/"],["zu","〜するために","/tsuː/"],["pflegen.","育む・享受する","/ˈpfleːɡən/"]], jp:"安らぎを享受するために。" },
+
+  { stanza: "第二連" },
+  { words:[["Treib,","追い払え","/traɪp/"],["Herr,","主よ","/hɛr/"],["von","〜から","/fɔn/"],["uns","私たちから","/ʊns/"],["fern","遠くへ","/fɛrn/"]], jp:"主よ、私たちから遠ざけてください、" },
+  { words:[["Die","その","/diː/"],["unreinen","汚れた","/ʊnˈraɪnən/"],["Geister,","霊・悪霊","/ˈɡaɪstɐ/"]], jp:"穢れた霊どもを。" },
+  { words:[["Halt","守れ","/halt/"],["die","その","/diː/"],["Nachtwach'","夜の番","/ˈnaxtˌvax/"],["gern,","喜んで","/ɡɛrn/"]], jp:"喜んで夜の番を守り、" },
+  { words:[["Sei","あれ","/zaɪ/"],["selbst","御自ら","/zɛlpst/"],["unser","私たちの","/ˈʊnzɐ/"],["Schutzherr,","守護主","/ˈʃʊtshɛr/"]], jp:"御自ら私たちの守護主となってください。" },
+  { words:[["Schirm","守れ","/ʃɪrm/"],["beid","両方","/baɪt/"],["Leib","肉体","/laɪp/"],["und","と","/ʊnt/"],["Seel'","魂","/zeːl/"]], jp:"肉体も魂も両方を守り、" },
+  { words:[["Unter","〜の下に","/ˈʊntɐ/"],["deine","あなたの","/ˈdaɪnə/"],["Flügel,","翼","/ˈflyːɡəl/"]], jp:"御翼の下に匿い、" },
+  { words:[["Send'","遣わせ","/zɛnt/"],["uns","私たちに","/ʊns/"],["dein'","あなたの","/daɪn/"],["Engel!","天使","/ˈɛŋəl/"]], jp:"私たちに御使いをお遣わしください！" },
+
+  { stanza: "第三連" },
+  { words:[["Lass","させよ","/las/"],["uns","私たちに","/ʊns/"],["einschlafen","眠りにつく","/ˈaɪnˌʃlaːfən/"]], jp:"私たちが眠りにつかせてください、" },
+  { words:[["Mit","〜とともに","/mɪt/"],["guten","良い","/ˈɡuːtən/"],["Gedanken,","思い・考え","/ɡəˈdaŋkən/"]], jp:"良き思いを抱いて。" },
+  { words:[["Fröhlich","喜ばしく","/ˈfrøːlɪç/"],["aufwachen","目覚める","/ˈaʊfˌvaxən/"]], jp:"喜びとともに目覚め、" },
+  { words:[["Und","そして","/ʊnt/"],["von","〜から","/fɔn/"],["dir","あなたから","/diːɐ/"],["nicht","〜しない","/nɪçt/"],["wanken;","揺らぐ","/ˈvaŋkən/"]], jp:"あなたから揺らぐことなく。" },
+  { words:[["Lass","させよ","/las/"],["uns","私たちを","/ʊns/"],["mit","〜をもって","/mɪt/"],["Züchten","節度・品行","/ˈtsʏçtən/"]], jp:"私たちが節度をもって、" },
+  { words:[["Unser","私たちの","/ˈʊnzɐ/"],["Tun","行い","/tuːn/"],["und","と","/ʊnt/"],["Dichten","思い・作","/ˈdɪçtən/"]], jp:"私たちの行いと思いを、" },
+  { words:[["Zu","〜へ","/tsuː/"],["dein'm","あなたの","/daɪnəm/"],["Preis","栄光・賛美","/praɪs/"],["richten!","向ける","/ˈrɪçtən/"]], jp:"あなたの栄光へと向けさせてください！" },
+];
+
+const dataFriede = [
+  { stanza: "第一連" },
+  { words:[["Da","そのとき","/daː/"],["die","〜が","/diː/"],["Hirten","羊飼いたちが","/ˈhɪrtən/"],["ihre","彼らの","/ˈiːrə/"],["Herde","群れを","/ˈheːrdə/"]], jp:"羊飼いたちが群れを" },
+  { words:[["Ließen","後にして","/ˈliːsən/"],["und","そして","/ʊnt/"],["des","〜の","/dɛs/"],["Engels","天使の","/ˈɛŋəls/"],["Worte","言葉を","/ˈvɔrtə/"]], jp:"後にして、天使の言葉を" },
+  { words:[["Trugen","運んだ","/ˈtruːɡən/"],["durch","〜を通って","/dʊrç/"],["die","〜の","/diː/"],["niedre","低い","/ˈniːdrə/"],["Pforte","門を通り","/ˈpfɔrtə/"]], jp:"低い門をくぐって" },
+  { words:[["Zu","〜へ","/tsuː/"],["der","〜に","/deːɐ/"],["Mutter","母に","/ˈmʊtɐ/"],["mit","〜を抱く","/mɪt/"],["dem","その","/deːm/"],["Kind,","御子に","/kɪnt/"]], jp:"御子を抱く母のもとへ届けると、" },
+  { words:[["Fuhr","進んだ","/fuːɐ/"],["das","〜が","/das/"],["himmlische","天の","/ˈhɪmlɪʃə/"],["Gesind","一行は","/ɡəˈzɪnt/"]], jp:"天の一行は進んでいった、" },
+  { words:[["Fort","続けて","/fɔrt/"],["im","〜の中を","/ɪm/"],["Sternenraum","星の空を","/ˈʃtɛrnənraʊm/"],["zu","〜し","/tsuː/"],["singen,","歌いながら","/ˈzɪŋən/"]], jp:"星の空の中を歌い続けながら、" },
+  { words:[["Fuhr","続いた","/fuːɐ/"],["der","〜が","/deːɐ/"],["Himmel","天が","/ˈhɪməl/"],["fort","続けて","/fɔrt/"],["zu","〜し","/tsuː/"],["klingen:","響きながら","/ˈklɪŋən/"]], jp:"天は鳴り響き続けた：" },
+  { words:[["\"Friede,","平和よ","/ˈfriːdə/"],["Friede,","平和よ","/ˈfriːdə/"],["auf","〜の上に","/aʊf/"],["der","〜の","/deːɐ/"],["Erde!\"","地に","/ˈeːrdə/"]], jp:"「平和よ、平和よ、地の上に！」" },
+
+  { stanza: "第二連" },
+  { words:[["Seit","〜以来","/zaɪt/"],["die","〜が","/diː/"],["Engel","天使たちが","/ˈɛŋəl/"],["so","そのように","/zoː/"],["geraten,","告げて","/ɡəˈraːtən/"]], jp:"天使たちがそのように告げて以来、" },
+  { words:[["O","ああ","/oː/"],["wie","いかに","/viː/"],["viele","多くの","/ˈfiːlə/"],["blut'ge","血塗られた","/ˈbluːtɪɡə/"],["Taten","行いが","/ˈtaːtən/"]], jp:"ああ、いかに多くの血塗られた行いが、" },
+  { words:[["Hat","してきた","/hat/"],["der","〜が","/deːɐ/"],["Streit","争いが","/ʃtraɪt/"],["auf","〜に乗って","/aʊf/"],["wildem","荒れ狂う","/ˈvɪldəm/"],["Pferde,","馬に","/ˈpfɛrdə/"]], jp:"荒れ狂う馬に乗った争いが" },
+  { words:[["Der","〜が","/deːɐ/"],["Geharnischte","武装した者は","/ɡəˈharnɪʃtə/"],["vollbracht!","成し遂げてきたことか","/fɔlˈbraxt/"]], jp:"鎧を纏った者が成し遂げてきたことか！" },
+  { words:[["In","〜の中で","/ɪn/"],["wie","いかに","/viː/"],["mancher","幾多の","/ˈmançɐ/"],["heil'gen","聖なる","/ˈhaɪlɡən/"],["Nacht","夜に","/naxt/"]], jp:"幾多の聖なる夜に、" },
+  { words:[["Sang","歌った","/zaŋ/"],["der","〜が","/deːɐ/"],["Chor","合唱が","/koːɐ/"],["der","〜の","/deːɐ/"],["Geister","霊たちの","/ˈɡaɪstɐ/"],["zagend,","怯えながら","/ˈtsaːɡənt/"]], jp:"霊たちの合唱が怯えながら歌い、" },
+  { words:[["Dringlich","切迫して","/ˈdrɪŋlɪç/"],["flehend,","懇願しながら","/ˈfleːənt/"],["leis","かすかに","/laɪs/"],["verklagend:","嘆きながら","/fɛɐˈklaːɡənt/"]], jp:"切に懇い、かすかに嘆きながら：" },
+  { words:[["\"Friede,","平和よ","/ˈfriːdə/"],["Friede,","平和よ","/ˈfriːdə/"],["auf","〜の上に","/aʊf/"],["der","〜の","/deːɐ/"],["Erde!\"","地に","/ˈeːrdə/"]], jp:"「平和よ、平和よ、地の上に！」" },
+
+  { stanza: "第三連" },
+  { words:[["Doch","しかし","/dɔx/"],["es","それは","/ɛs/"],["ist","〜だ","/ɪst/"],["ein","一つの","/aɪn/"],["ew'ger","永遠の","/ˈeːvɪɡɐ/"],["Glaube,","信仰","/ˈɡlaʊbə/"]], jp:"しかし、永遠の信仰がある——" },
+  { words:[["Daß","〜という","/das/"],["der","〜が","/deːɐ/"],["Schwache","弱き者は","/ˈʃvaxə/"],["nicht","〜ない","/nɪçt/"],["zum","〜の","/tsʊm/"],["Raube","略奪物に","/ˈraʊbə/"]], jp:"弱き者は略奪物に" },
+  { words:[["Jeder","あらゆる","/ˈjeːdɐ/"],["frechen","傲慢な","/ˈfrɛçən/"],["Mordgebärde","殺戮の身振りの","/ˈmɔrtɡəˌbɛːrdə/"]], jp:"あらゆる傲慢な殺戮の身振りの" },
+  { words:[["Werde","〜だろう","/ˈveːrdə/"],["fallen","倒れる","/ˈfalən/"],["allezeit:","常に","/ˈaləˌtsaɪt/"]], jp:"常に倒れるとは限らないという：" },
+  { words:[["Etwas","何か","/ˈɛtvas/"],["wie","〜のような","/viː/"],["Gerechtigkeit","正義が","/ɡəˈrɛçtɪɡkaɪt/"]], jp:"正義に似た何かが" },
+  { words:[["Webt","織り成し","/veːpt/"],["und","そして","/ʊnt/"],["wirkt","働く","/vɪrkt/"],["in","〜の中で","/ɪn/"],["Mord","殺戮と","/mɔrt/"],["und","と","/ʊnt/"],["Grauen","恐怖の中で","/ˈɡraʊən/"]], jp:"殺戮と恐怖の中で織り成され、" },
+  { words:[["Und","そして","/ʊnt/"],["ein","一つの","/aɪn/"],["Reich","王国が","/raɪç/"],["will","〜しようとしている","/vɪl/"],["sich","自らを","/zɪç/"],["erbauen,","築こうとしている","/ɛɐˈbaʊən/"]], jp:"一つの王国が自らを築こうとしている、" },
+  { words:[["Das","〜する","/das/"],["den","〜を","/deːn/"],["Frieden","平和を","/ˈfriːdən/"],["sucht","求める","/zuːxt/"],["auf","〜に","/aʊf/"],["der","〜の","/deːɐ/"],["Erde.","地上に","/ˈeːrdə/"]], jp:"地上に平和を求める王国が。" },
+
+  { stanza: "第四連" },
+  { words:[["Mählich","次第に","/ˈmɛːlɪç/"],["wird","〜するだろう","/vɪrt/"],["es","それは","/ɛs/"],["sich","自らを","/zɪç/"],["gestalten,","形成するだろう","/ɡəˈʃtaltən/"]], jp:"次第にそれは形を成し、" },
+  { words:[["Seines","その","/ˈzaɪnəs/"],["heil'gen","聖なる","/ˈhaɪlɡən/"],["Amtes","使命を","/ˈamtəs/"],["walten,","司るだろう","/ˈvaltən/"]], jp:"その聖なる使命を司るだろう。" },
+  { words:[["Waffen","武器を","/ˈvafən/"],["schmieden","鍛えながら","/ˈʃmiːdən/"],["ohne","〜なしに","/ˈoːnə/"],["Fährde,","危険なく","/ˈfɛːrdə/"]], jp:"危険なく武器を鍛え、" },
+  { words:[["Flammenschwerter","炎の剣を","/ˈflamənˌʃvɛrtɐ/"],["für","〜のために","/fyːɐ/"],["das","〜の","/das/"],["Recht,","正義のために","/rɛçt/"]], jp:"正義のための炎の剣を。" },
+  { words:[["Und","そして","/ʊnt/"],["ein","一つの","/aɪn/"],["königlich","王のごとき","/ˈkøːnɪklɪç/"],["Geschlecht","一族が","/ɡəˈʃlɛçt/"]], jp:"そして王なる一族が" },
+  { words:[["Wird","〜するだろう","/vɪrt/"],["erblühn","開花する","/ɛɐˈblyːn/"],["mit","〜とともに","/mɪt/"],["starken","力強い","/ˈʃtarkən/"],["Söhnen,","息子たちと","/ˈzøːnən/"]], jp:"力強い息子たちとともに開花し、" },
+  { words:[["Dessen","その","/ˈdɛsən/"],["helle","輝く","/ˈhɛlə/"],["Tuben","ラッパが","/ˈtuːbən/"],["dröhnen:","鳴り響く","/ˈdrøːnən/"]], jp:"その輝くラッパが鳴り響く：" },
+  { words:[["\"Friede,","平和よ","/ˈfriːdə/"],["Friede,","平和よ","/ˈfriːdə/"],["auf","〜の上に","/aʊf/"],["der","〜の","/deːɐ/"],["Erde!\"","地に","/ˈeːrdə/"]], jp:"「平和よ、平和よ、地の上に！」" },
+];
+
+function render(data, containerId) {
+  const content = document.getElementById(containerId);
+  let stanzaEl = null;
+  let stanzaIndex = 0;
+
+  data.forEach(item => {
+    if (item.stanza) {
+      stanzaIndex++;
+      stanzaEl = document.createElement('div');
+      stanzaEl.className = 'stanza';
+      stanzaEl.style.animationDelay = (stanzaIndex * 0.15) + 's';
+      const hdr = document.createElement('div');
+      hdr.className = 'stanza-header';
+      hdr.innerHTML = `<span class="stanza-num">${item.stanza}</span><div class="stanza-rule"></div>`;
+      stanzaEl.appendChild(hdr);
+      content.appendChild(stanzaEl);
+      return;
+    }
+
+    const block = document.createElement('div');
+    block.className = 'line-block';
+    const lineRow = document.createElement('div');
+    lineRow.className = 'line-row';
+    const wordRow = document.createElement('div');
+    wordRow.className = 'word-row';
+
+    item.words.forEach(([orig, mean, ipa]) => {
+      const unit = document.createElement('div');
+      unit.className = 'word-unit';
+      unit.innerHTML =
+        `<span class="w-orig">${orig}</span>` +
+        `<span class="w-mean">${mean}</span>` +
+        `<span class="w-ipa">${ipa}</span>`;
+      wordRow.appendChild(unit);
+    });
+
+    const trans = document.createElement('span');
+    trans.className = 'trans-text';
+    trans.textContent = item.jp;
+
+    lineRow.appendChild(wordRow);
+    lineRow.appendChild(trans);
+    block.appendChild(lineRow);
+    stanzaEl.appendChild(block);
+  });
+}
+
+render(dataNachtlied, 'content-1');
+render(dataFriede, 'content-2');
+</script>
+</body>
+</html>
