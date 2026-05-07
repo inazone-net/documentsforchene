@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die Wasserfee op. 21 — 対訳資料</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+JP:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --ink-mid: #3d342a;
+    --ink-light: #7a6d62;
+    --ink-faint: #b8ada4;
+    --accent: #8b4a2a;
+    --accent-soft: #c4896a;
+    --paper: #f5f0e8;
+    --paper-warm: #ede6d8;
+    --rule: #d4c9bc;
+    --blue-gloss: #3a5a7c;
+    --blue-muted: #6a8aac;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Serif JP', serif;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 27px,
+        rgba(180,160,140,0.07) 27px,
+        rgba(180,160,140,0.07) 28px
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 64px 48px 80px;
+  }
+
+  .piece-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+    padding-bottom: 16px;
+    border-bottom: 1.5px solid var(--rule);
+    position: relative;
+  }
+  .piece-title::after {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 1px;
+    background: var(--accent-soft);
+    margin-top: 10px;
+  }
+  .piece-subtitle {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--ink-light);
+    margin-bottom: 32px;
+  }
+
+  .stanza {
+    margin-bottom: 52px;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.6s ease forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .stanza-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .stanza-num {
+    font-family: 'EB Garamond', serif;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .stanza-rule {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--rule), transparent);
+  }
+
+  .line-block {
+    margin-bottom: 6px;
+    padding: 4px 0;
+    transition: background 0.2s;
+  }
+  .line-block:hover {
+    background: rgba(139,74,42,0.03);
+    border-radius: 4px;
+  }
+
+  .line-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    width: 100%;
+  }
+
+  .word-row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0;
+    align-items: flex-start;
+    flex: 0 0 auto;
+  }
+
+  .word-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 3px;
+    min-width: 0;
+  }
+
+  .w-orig {
+    font-family: 'EB Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+
+  .w-mean {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 10.5px;
+    font-weight: 300;
+    color: var(--blue-gloss);
+    margin-top: 2px;
+    white-space: nowrap;
+    line-height: 1.3;
+  }
+
+  .w-ipa {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--ink-faint);
+    margin-top: 1px;
+    white-space: nowrap;
+  }
+
+  .trans-text {
+    flex: 1 0 auto;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--accent-soft);
+    white-space: nowrap;
+    padding-left: 18px;
+    padding-bottom: 3px;
+    text-align: right;
+  }
+
+  .print-btn {
+    display: block;
+    margin: 0 auto 28px;
+    padding: 6px 20px;
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-light);
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 20px;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .print-btn:hover { border-color: var(--accent-soft); color: var(--accent); }
+
+  @media print {
+    :root {
+      --ink: #000; --ink-mid: #000; --ink-light: #000; --ink-faint: #000;
+      --accent: #000; --accent-soft: #000; --rule: #000;
+      --blue-gloss: #000; --blue-muted: #000;
+    }
+    @page { size: A4 portrait; margin: 5mm 13mm 5mm 13mm; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { background: white !important; }
+    body::before { display: none; }
+    .print-btn { display: none; }
+    .page { max-width: 100%; padding: 0; }
+    .piece-title { font-size: 18px; margin-bottom: 2px; padding-bottom: 1.5mm; }
+    .piece-title::after { margin-top: 4px; }
+    .piece-subtitle { font-size: 8.5px; margin-bottom: 3mm; }
+    .stanza { margin-bottom: 2mm; opacity: 1; transform: none; animation: none; }
+    .stanza-header { margin-bottom: 0.8mm; }
+    .stanza-num { font-size: 8.5px; }
+    .line-block { margin-bottom: 0.4mm; padding: 0; }
+    .line-block:hover { background: none; }
+    .w-orig { font-size: 14.5px; line-height: 1.2; }
+    .w-mean { font-size: 7.5px; margin-top: 1px; line-height: 1.2; }
+    .w-ipa  { font-size: 9px; margin-top: 0; }
+    .word-unit { padding: 0 2px; }
+    .trans-text { font-size: 10.5px; padding-left: 8px; padding-bottom: 0; }
+  }
+
+  .notes {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+  .notes-header {
+    font-family: 'EB Garamond', serif;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .notes-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .notes-list li {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--ink-light);
+    line-height: 1.7;
+  }
+  .note-key {
+    font-family: 'EB Garamond', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    font-style: italic;
+  }
+
+  @media print {
+    .notes { margin-top: 4mm; padding-top: 2mm; }
+    .notes-header { font-size: 8px; margin-bottom: 1mm; }
+    .notes-list li { font-size: 8.5px; }
+    .note-key { font-size: 10px; }
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 32px 20px 48px; }
+    .piece-title { font-size: 22px; }
+    .w-orig { font-size: 17px; }
+    .word-unit { padding: 0 5px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <button class="print-btn" onclick="window.print()">印刷 / A4 で保存</button>
+
+  <div class="piece-title">Die Wasserfee op. 21</div>
+  <div class="piece-subtitle">ドイツ語ロマン派歌曲 · Op. 21</div>
+
+  <main id="content"></main>
+
+  <div class="notes">
+    <div class="notes-header">注記</div>
+    <ul class="notes-list">
+      <li><span class="note-key">Sturmhell</span> — 造語的複合語（嵐 + 明るい）</li>
+      <li><span class="note-key">glühn / Flehn / vergehn</span> — 詩的短縮形（-en → -n）</li>
+      <li><span class="note-key">singed</span> — 原文ママ（文脈から <em>singend</em> の誤記と思われる）</li>
+      <li><span class="note-key">klingst's</span> — 縮約形（klingt + es）</li>
+      <li><span class="note-key">in wie im süßen Melodien</span> — 動詞が省略された詩的構文</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+const data = [
+  { stanza: "第一連" },
+  {
+    words: [
+      ["Endlos", "果てしなく", "/ˈɛntloːs/"],
+      ["über", "〜の上を", "/ˈyːbɐ/"],
+      ["Wasser", "水の上を", "/ˈvasɐ/"],
+      ["hauchen", "ただよう", "/ˈhaʊxən/"],
+      ["Nebel,", "霧が", "/ˈneːbəl/"]
+    ],
+    jp: "果てしなく水の上を霧がただよい"
+  },
+  {
+    words: [
+      ["dem", "〜に（与格）", "/dɛm/"],
+      ["Gestade", "岸辺に", "/ɡəˈʃtaːdə/"],
+      ["nah;", "近く", "/naː/"]
+    ],
+    jp: "岸辺のほとりに"
+  },
+  {
+    words: [
+      ["Möwen", "カモメが", "/ˈmøːvən/"],
+      ["aus", "〜から", "/aʊs/"],
+      ["der", "〜の（与格）", "/deːɐ̯/"],
+      ["Woge", "波から", "/ˈvoːɡə/"],
+      ["tauchen,", "飛び立ち", "/ˈtaʊxən/"]
+    ],
+    jp: "カモメが波から飛び立ち"
+  },
+  {
+    words: [
+      ["Dämmerung", "夕暮れと", "/ˈdɛmərʊŋ/"],
+      ["und", "そして", "/ʊnt/"],
+      ["Nacht", "夜が", "/naxt/"],
+      ["ist", "ある", "/ɪst/"],
+      ["da.", "そこに", "/daː/"]
+    ],
+    jp: "夕暮れと夜がやってきた"
+  },
+  {
+    words: [
+      ["Und", "そして", "/ʊnt/"],
+      ["die", "〜が（主格）", "/diː/"],
+      ["Wellen", "波が", "/ˈvɛlən/"],
+      ["schießen", "走る", "/ˈʃiːsən/"],
+      ["her", "こちらへ", "/heːɐ̯/"],
+      ["und", "そして", "/ʊnt/"],
+      ["hin;", "あちらへ", "/hɪn/"]
+    ],
+    jp: "波はこちらへあちらへと走り"
+  },
+  {
+    words: [
+      ["wie", "いかに", "/viː/"],
+      ["sie", "彼女が", "/ziː/"],
+      ["grüße,", "挨拶するか", "/ˈɡʁyːsə/"],
+      ["wie", "いかに", "/viː/"],
+      ["sie", "彼女が", "/ziː/"],
+      ["fliehe,", "逃げるか", "/ˈfliːə/"]
+    ],
+    jp: "彼女が挨拶するように、逃げるように"
+  },
+  {
+    words: [
+      ["in", "〜の中", "/ɪn/"],
+      ["wie", "〜のように", "/viː/"],
+      ["im", "〜の中で", "/ɪm/"],
+      ["süßen", "甘い", "/ˈzyːsən/"],
+      ["Melodien!", "旋律の中で", "/meloˈdiːən/"]
+    ],
+    jp: "甘い旋律の中にあるかのように"
+  },
+  {
+    words: [
+      ["Horch", "耳を澄ませ", "/hɔʁç/"],
+      ["im", "〜の中に", "/ɪm/"],
+      ["See,", "湖の", "/zeː/"],
+      ["die", "〜が（主格）", "/diː/"],
+      ["Wasserfee!", "水の精が！", "/ˈvasɐfeː/"]
+    ],
+    jp: "耳を澄ませ、湖に水の精が！"
+  },
+
+  { stanza: "第二連" },
+  {
+    words: [
+      ["Sturmhell", "嵐に明るく", "/ˈʃtʊʁmhɛl/"],
+      ["dunkel", "暗く", "/ˈdʊŋkəl/"],
+      ["glühn", "輝く", "/ɡlyːn/"],
+      ["die", "〜が", "/diː/"],
+      ["Wogen,", "波が", "/ˈvoːɡən/"]
+    ],
+    jp: "嵐に照らされて暗く波が輝き"
+  },
+  {
+    words: [
+      ["sind", "〜か", "/zɪnt/"],
+      ["es", "それは", "/ɛs/"],
+      ["Seelen,", "魂たちか", "/ˈzeːlən/"],
+      ["die", "〜が", "/diː/"],
+      ["hinab,", "下へ沈んだ", "/hɪˈnaːp/"]
+    ],
+    jp: "それは魂たちか、下へと沈んだ"
+  },
+  {
+    words: [
+      ["um", "〜を", "/ʊm/"],
+      ["ihr", "彼女たちの", "/iːɐ̯/"],
+      ["Erdenglück", "地上の幸せを", "/ˈɛʁdənɡlʏk/"],
+      ["betrogen,", "欺かれて", "/bəˈtʁoːɡən/"]
+    ],
+    jp: "地上の幸せを奪われて"
+  },
+  {
+    words: [
+      ["Liebe", "愛が", "/ˈliːbə/"],
+      ["zog", "引き込んだ", "/tsoːk/"],
+      ["ins", "〜の中へ", "/ɪns/"],
+      ["feuchte", "湿った", "/ˈfɔʏçtə/"],
+      ["Grab?", "墓へ？", "/ɡʁaːp/"]
+    ],
+    jp: "愛が湿った墓の中へと引き込んだのか"
+  },
+  {
+    words: [
+      ["Siehst", "見えるか", "/ziːst/"],
+      ["du", "おまえには", "/duː/"],
+      ["sie", "彼女たちが", "/ziː/"],
+      ["dort", "そこで", "/dɔʁt/"],
+      ["winken,", "手招きするのが", "/ˈvɪŋkən/"],
+      ["Fisch", "魚と", "/fɪʃ/"],
+      ["und", "そして", "/ʊnt/"],
+      ["Maid,", "乙女が", "/maɪt/"]
+    ],
+    jp: "あそこで手招きするのが見えるか、魚と乙女が"
+  },
+  {
+    words: [
+      ["in", "〜に", "/ɪn/"],
+      ["der", "〜の（与格）", "/deːɐ̯/"],
+      ["Linken", "左手に", "/ˈlɪŋkən/"],
+      ["hoch", "高く", "/hoːx/"],
+      ["das", "〜を", "/das/"],
+      ["kleid,", "衣を", "/klaɪt/"]
+    ],
+    jp: "左手に衣を高く掲げ"
+  },
+  {
+    words: [
+      ["Gürtel", "帯が", "/ˈɡʏʁtəl/"],
+      ["blinken", "きらめき", "/ˈblɪŋkən/"],
+      ["und", "そして", "/ʊnt/"],
+      ["Geschmeid?", "宝飾品が？", "/ɡəˈʃmaɪt/"]
+    ],
+    jp: "帯と宝飾品をきらめかせながら"
+  },
+  {
+    words: [
+      ["Horch", "耳を澄ませ", "/hɔʁç/"],
+      ["im", "〜の中に", "/ɪm/"],
+      ["See,", "湖の", "/zeː/"],
+      ["die", "〜が（主格）", "/diː/"],
+      ["Wasserfee!", "水の精が！", "/ˈvasɐfeː/"]
+    ],
+    jp: "耳を澄ませ、湖に水の精が！"
+  },
+
+  { stanza: "第三連" },
+  {
+    words: [
+      ["Sehnlich", "切なく", "/ˈzeːnlɪç/"],
+      ["von", "〜から", "/fɔn/"],
+      ["den", "〜の（与格）", "/dɛn/"],
+      ["bleichen", "青白い", "/ˈblaɪçən/"],
+      ["Lippen,", "唇から", "/ˈlɪpən/"]
+    ],
+    jp: "切なく青白い唇から"
+  },
+  {
+    words: [
+      ["von", "〜から", "/fɔn/"],
+      ["den", "〜の", "/dɛn/"],
+      ["Lippen", "唇から", "/ˈlɪpən/"],
+      ["blass", "青ざめた", "/blas/"],
+      ["und", "そして", "/ʊnt/"],
+      ["bleich", "白い", "/blaɪç/"]
+    ],
+    jp: "青ざめ白い唇から"
+  },
+  {
+    words: [
+      ["klagt", "嘆く", "/klaːkt/"],
+      ["es", "それが", "/ɛs/"],
+      ["in", "〜の中で", "/ɪn/"],
+      ["Gestein", "岩の中で", "/ɡəˈʃtaɪn/"],
+      ["und", "そして", "/ʊnt/"],
+      ["klippen", "断崖で", "/ˈklɪpən/"]
+    ],
+    jp: "岩と断崖の中で嘆きが響く"
+  },
+  {
+    words: [
+      ["ums", "〜のために", "/ʊms/"],
+      ["verlorne", "失われた", "/fɛɐ̯ˈlɔʁnə/"],
+      ["Himmelreich:", "天国のために", "/ˈhɪməlʁaɪç/"]
+    ],
+    jp: "失われた天国のために"
+  },
+  {
+    words: [
+      ["„Alles", "「すべて", "/ˈaləs/"],
+      ["unser", "私たちの", "/ˈʊnzɐ/"],
+      ["Leben", "命は", "/ˈleːbən/"],
+      ["ist", "だ", "/ɪst/"],
+      ["nur", "ただ", "/nuːɐ̯/"],
+      ["Flehn,", "懇願のみ", "/fleːn/"]
+    ],
+    jp: "「私たちの命はただ懇願のみ"
+  },
+  {
+    words: [
+      ["weinend", "泣きながら", "/ˈvaɪnənt/"],
+      ["Weben,", "織ること", "/ˈveːbən/"],
+      ["singed", "歌いながら", "/ˈzɪŋənt/"],
+      ["Wehn,", "吹くこと", "/veːn/"]
+    ],
+    jp: "泣きながら織り、歌いながら漂い"
+  },
+  {
+    words: [
+      ["Klag'", "嘆きを", "/klaːk/"],
+      ["erheben", "上げて", "/ɛɐ̯ˈheːbən/"],
+      ["und", "そして", "/ʊnt/"],
+      ["vergehn.“", "消えゆく」", "/fɛɐ̯ˈɡeːn/"]
+    ],
+    jp: "嘆きを上げて消えゆく」"
+  },
+  {
+    words: [
+      ["Horch", "耳を澄ませ", "/hɔʁç/"],
+      ["im", "〜の中に", "/ɪm/"],
+      ["See,", "湖の", "/zeː/"],
+      ["die", "〜が（主格）", "/diː/"],
+      ["Wasserfee!", "水の精が！", "/ˈvasɐfeː/"]
+    ],
+    jp: "耳を澄ませ、湖に水の精が！"
+  },
+
+  { stanza: "第四連" },
+  {
+    words: [
+      ["Augenlockendes", "目を誘う", "/ˈaʊɡənlɔkəndəs/"],
+      ["Gelüste", "欲望が", "/ɡəˈlʏstə/"]
+    ],
+    jp: "目を誘う欲望が"
+  },
+  {
+    words: [
+      ["schaut", "見上げる", "/ʃaʊt/"],
+      ["herauf", "上へ", "/hɛˈʁaʊf/"],
+      ["voll", "〜に満ちて", "/fɔl/"],
+      ["Liebespein,", "恋の苦しみに", "/ˈliːbəspaɪn/"]
+    ],
+    jp: "恋の苦しみに満ちて見上げる"
+  },
+  {
+    words: [
+      ["Wellen", "波が", "/ˈvɛlən/"],
+      ["rauschen", "さざめく", "/ˈʁaʊʃən/"],
+      ["um", "〜の周りを", "/ʊm/"],
+      ["die", "〜の", "/diː/"],
+      ["Brüste", "胸の周りを", "/ˈbʁʏstə/"]
+    ],
+    jp: "波が胸の周りをさざめき"
+  },
+  {
+    words: [
+      ["und", "そして", "/ʊnt/"],
+      ["wie", "〜のように", "/viː/"],
+      ["Harfen", "ハープのように", "/ˈhaʁfən/"],
+      ["klingst’s", "鳴り響く", "/klɪŋts/"],
+      ["darein,", "その中で", "/daˈʁaɪn/"]
+    ],
+    jp: "ハープのようにその中で鳴り響く"
+  },
+  {
+    words: [
+      ["und", "そして", "/ʊnt/"],
+      ["es", "それが", "/ɛs/"],
+      ["flüstert,", "ささやき", "/ˈflʏstɐt/"],
+      ["flüstert", "ささやく", "/ˈflʏstɐt/"],
+      ["bange:", "不安そうに", "/ˈbaŋə/"]
+    ],
+    jp: "不安そうにささやき、ささやく"
+  },
+  {
+    words: [
+      ["„O", "「ああ", "/oː/"],
+      ["komm", "来て", "/kɔm/"],
+      ["und", "そして", "/ʊnt/"],
+      ["scherz!", "戯れよう！", "/ʃɛʁts/"],
+      ["ich", "私は", "/ɪç/"],
+      ["verlange", "求める", "/fɛɐ̯ˈlaŋə/"]
+    ],
+    jp: "「ああ来て戯れよう！私は求める"
+  },
+  {
+    words: [
+      ["dein", "おまえを", "/daɪn/"],
+      ["mit", "〜とともに", "/mɪt/"],
+      ["Schmerz,", "苦しみとともに", "/ʃmɛʁts/"],
+      ["rote", "赤い", "/ˈʁoːtə/"],
+      ["Wange,", "ほほよ", "/ˈvaŋə/"],
+      ["fühlend", "感ずる", "/ˈfyːlənt/"],
+      ["Herz.”", "心よ」", "/hɛʁts/"]
+    ],
+    jp: "苦しみとともにおまえを、赤いほほよ、感ずる心よ」"
+  },
+  {
+    words: [
+      ["Horch", "耳を澄ませ", "/hɔʁç/"],
+      ["im", "〜の中に", "/ɪm/"],
+      ["See,", "湖の", "/zeː/"],
+      ["die", "〜が（主格）", "/diː/"],
+      ["Wasserfee!", "水の精が！", "/ˈvasɐfeː/"]
+    ],
+    jp: "耳を澄ませ、湖に水の精が！"
+  }
+];
+
+const content = document.getElementById('content');
+let stanzaEl = null;
+let stanzaIndex = 0;
+
+data.forEach(item => {
+  if (item.stanza) {
+    stanzaIndex++;
+    stanzaEl = document.createElement('div');
+    stanzaEl.className = 'stanza';
+    stanzaEl.style.animationDelay = (stanzaIndex * 0.15) + 's';
+    const hdr = document.createElement('div');
+    hdr.className = 'stanza-header';
+    hdr.innerHTML = `<span class="stanza-num">${item.stanza}</span><div class="stanza-rule"></div>`;
+    stanzaEl.appendChild(hdr);
+    content.appendChild(stanzaEl);
+    return;
+  }
+
+  const block = document.createElement('div');
+  block.className = 'line-block';
+  const lineRow = document.createElement('div');
+  lineRow.className = 'line-row';
+  const wordRow = document.createElement('div');
+  wordRow.className = 'word-row';
+
+  item.words.forEach(([orig, mean, ipa]) => {
+    const unit = document.createElement('div');
+    unit.className = 'word-unit';
+    unit.innerHTML =
+      `<span class="w-orig">${orig}</span>` +
+      `<span class="w-mean">${mean}</span>` +
+      `<span class="w-ipa">${ipa}</span>`;
+    wordRow.appendChild(unit);
+  });
+
+  const trans = document.createElement('span');
+  trans.className = 'trans-text';
+  trans.textContent = item.jp;
+
+  lineRow.appendChild(wordRow);
+  lineRow.appendChild(trans);
+  block.appendChild(lineRow);
+  stanzaEl.appendChild(block);
+});
+</script>
+</body>
+</html>
