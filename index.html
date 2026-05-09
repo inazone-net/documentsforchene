@@ -24,6 +24,9 @@
     }
     li {
       margin: 10px 0;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
     }
     a {
       text-decoration: none;
@@ -33,41 +36,36 @@
     a:hover {
       text-decoration: underline;
     }
-    #message {
+    .date {
       color: #888;
-      font-size: 0.95em;
+      font-size: 0.88em;
+      white-space: nowrap;
     }
   </style>
 </head>
 <body>
   <h1>ドキュメント一覧</h1>
-  <p id="message">読み込み中...</p>
-  <ul id="list"></ul>
-
-  <script>
-    fetch('https://api.github.com/repos/inazone-net/documentsforchene/contents/')
-      .then(res => res.json())
-      .then(files => {
-        const list = document.getElementById('list');
-        const message = document.getElementById('message');
-        const htmlFiles = files.filter(f => f.type === 'file' && f.name.endsWith('.html') && f.name !== 'index.html');
-        if (htmlFiles.length === 0) {
-          message.textContent = 'HTMLファイルが見つかりませんでした。';
-          return;
-        }
-        message.remove();
-        htmlFiles.forEach(f => {
-          const li = document.createElement('li');
-          const a = document.createElement('a');
-          a.href = f.name;
-          a.textContent = f.name;
-          li.appendChild(a);
-          list.appendChild(li);
-        });
-      })
-      .catch(() => {
-        document.getElementById('message').textContent = 'ファイル一覧の取得に失敗しました。';
-      });
-  </script>
+  <ul>
+    <li>
+      <a href="LobetDenHerrnTEXT.html">LobetDenHerrnTEXT.html</a>
+      <span class="date">2027/01/24</span>
+    </li>
+    <li>
+      <a href="DieWasserfeeTEXT.html">DieWasserfeeTEXT.html</a>
+      <span class="date">2026/10/11</span>
+    </li>
+    <li>
+      <a href="FreundeWasserTEXT.html">FreundeWasserTEXT.html</a>
+      <span class="date">2026/10/11</span>
+    </li>
+    <li>
+      <a href="NachtwacheIITEXT.html">NachtwacheIITEXT.html</a>
+      <span class="date">2026/10/11</span>
+    </li>
+    <li>
+      <a href="CANTAT2026_taiyaku.html">CANTAT2026_taiyaku.html</a>
+      <span class="date">2026/04/29</span>
+    </li>
+  </ul>
 </body>
 </html>
