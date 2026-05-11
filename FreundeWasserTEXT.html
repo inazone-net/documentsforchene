@@ -235,6 +235,57 @@
     .w-orig { font-size: 17px; }
     .word-unit { padding: 0 5px; }
   }
+
+  .essay {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 2px solid var(--rule);
+  }
+  .essay-header {
+    font-family: 'EB Garamond', serif;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .essay-section {
+    margin-bottom: 28px;
+  }
+  .essay-section-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .essay-section-sub {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--ink-mid);
+    margin: 14px 0 6px;
+  }
+  .essay-body {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.95;
+  }
+
+  @media print {
+    .essay { margin-top: 5mm; padding-top: 3mm; }
+    .essay-header { font-size: 8px; margin-bottom: 2mm; }
+    .essay-section { margin-bottom: 3mm; }
+    .essay-section-title { font-size: 11px; margin-bottom: 1mm; padding-bottom: 0.5mm; }
+    .essay-section-sub { font-size: 10px; margin: 2mm 0 1mm; }
+    .essay-body { font-size: 8.5px; line-height: 1.7; }
+  }
 </style>
 </head>
 <body>
@@ -246,6 +297,39 @@
   <div class="piece-subtitle">ドイツ語飲み歌 · 18〜19世紀</div>
 
   <main id="content"></main>
+
+  <div class="essay">
+    <div class="essay-header">詩の解説</div>
+
+    <div class="essay-section">
+      <div class="essay-section-title">作品概要</div>
+      <p class="essay-body">「友よ、水は人を黙らせる（Freunde, Wasser machet stumm）」は、18〜19世紀ドイツ語圏で広まった飲み歌（Trinklied）です。ワインを称え水を貶すという酒宴の定番の主題を、軽妙なユーモアと逆説的な論理で描いています。全2連構成で、各連は4行から成ります。</p>
+    </div>
+
+    <div class="essay-section">
+      <div class="essay-section-title">詩の構造</div>
+      <p class="essay-body">2連構成で、それぞれ異なる角度から「ワイン対水」という対比を展開します。</p>
+
+      <div class="essay-section-sub">第一連</div>
+      <p class="essay-body">「水は人を黙らせる」という命題を出発点に、魚を例として引き合いに出します。水の中に住む魚は無口である——だからこそ水を飲む者も黙ってしまう、という滑稽な三段論法です。しかし「ワインの席ではそれが逆となる」という転換で締めくくり、ワインこそが言葉を解き放つものだと宣言します。</p>
+
+      <div class="essay-section-sub">第二連</div>
+      <p class="essay-body">ワインが人に与える「雄弁さ」を具体的に描きます。ラインワインが「私たちの口を借りて語る」という表現が巧みで、話しているのは自分ではなくワインだという言い訳めいたユーモアが込められています。しかしその雄弁さの中身は「諭し、言い争い、教える」——そして「誰も相手の話を聞かない」という落ちで終わります。</p>
+    </div>
+
+    <div class="essay-section">
+      <div class="essay-section-title">詩の主題</div>
+
+      <div class="essay-section-sub">逆説としてのユーモア</div>
+      <p class="essay-body">この詩の核心は「水は黙らせ、ワインは喋らせる」という逆説にあります。一見単純な飲み歌の主張ですが、第二連の落ちがそれを皮肉に反転させます。ワインで饒舌になった人々は「諭し、言い争い、教える」ばかりで、誰も相手の話を聞かない——つまりワインが与えるのは「真の対話」ではなく「賑やかな独り言の集合」に過ぎないのです。水の沈黙を笑いながら、実はワインの騒々しさも同時に笑っています。</p>
+
+      <div class="essay-section-sub">魚の比喩</div>
+      <p class="essay-body">「水の中に住む魚は黙っている、だから水を飲むと黙る」という論理は、もちろん詭弁です。しかしこの詭弁をあえて「これを魚たちから学べ」と真面目に語る口調が、飲み歌特有のおどけた雰囲気を生み出しています。食卓の仲間たちが互いに笑い合うための「わかっている嘘」として機能しています。</p>
+
+      <div class="essay-section-sub">Trinklied（飲み歌）の伝統</div>
+      <p class="essay-body">ドイツ語圏の飲み歌は、シューベルトやブラームスなどの作曲家も好んで取り上げたジャンルで、友情・酒・人生の無常を軽妙に歌うのが典型です。この詩もその伝統に則り、「友よ（Freunde）」という呼びかけから始まることで、一人で読むテキストではなく酒宴の席で共に歌い・笑い合うための言葉であることを最初から示しています。</p>
+    </div>
+  </div>
 
 </div>
 
