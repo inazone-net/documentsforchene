@@ -235,6 +235,57 @@
     .w-orig { font-size: 17px; }
     .word-unit { padding: 0 5px; }
   }
+
+  .essay {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 2px solid var(--rule);
+  }
+  .essay-header {
+    font-family: 'EB Garamond', serif;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .essay-section {
+    margin-bottom: 28px;
+  }
+  .essay-section-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .essay-section-sub {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--ink-mid);
+    margin: 14px 0 6px;
+  }
+  .essay-body {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.95;
+  }
+
+  @media print {
+    .essay { margin-top: 5mm; padding-top: 3mm; }
+    .essay-header { font-size: 8px; margin-bottom: 2mm; }
+    .essay-section { margin-bottom: 3mm; }
+    .essay-section-title { font-size: 11px; margin-bottom: 1mm; padding-bottom: 0.5mm; }
+    .essay-section-sub { font-size: 10px; margin: 2mm 0 1mm; }
+    .essay-body { font-size: 8.5px; line-height: 1.7; }
+  }
 </style>
 </head>
 <body>
@@ -246,6 +297,39 @@
   <div class="piece-subtitle">F. Rückert 詩 · J. Brahms 作曲 · 無伴奏合唱曲（1888年）</div>
 
   <main id="content"></main>
+
+  <div class="essay">
+    <div class="essay-header">詩の解説</div>
+
+    <div class="essay-section">
+      <div class="essay-section-title">作品概要</div>
+      <p class="essay-body">「夜の見張り 第二番（Nachtwache II）」は、フリードリヒ・リュッケルト（Friedrich Rückert）の詩にヨハネス・ブラームスが曲を付けた無伴奏合唱曲（Op. 104, No. 2、1888年）です。わずか2連4行という極めて短い詩ですが、その凝縮された言葉の中に夜・眠り・死・魂の平安という深いテーマが宿っています。</p>
+    </div>
+
+    <div class="essay-section">
+      <div class="essay-section-title">詩の構造</div>
+      <p class="essay-body">2連構成で、各連はそれぞれ2行から成ります。全体でわずか4行という短詩ですが、その構造は精巧に計算されています。</p>
+
+      <div class="essay-section-sub">第一連</div>
+      <p class="essay-body">空間的な対称性を持ちます。「西から」呼ぶ角笛と「東から」応える角笛——この二つの方角は、日没（西）と日の出（東）、すなわち死と再生を暗示します。「眠っておられますか」という問いで始まり、「彼らは眠っている」という答えで閉じる構造は、問いと応答が角笛の東西の呼び交わしと鏡像をなしています。</p>
+
+      <div class="essay-section-sub">第二連</div>
+      <p class="essay-body">内面へと転じます。「怯える心よ」という呼びかけは、第一連の外的な夜の情景から、詩の語り手自身の内なる不安へと視点を移します。そしてその不安に対して「安心してランプを消し、平和の中に身を包め」という慰めと安堵の言葉が置かれます。</p>
+    </div>
+
+    <div class="essay-section">
+      <div class="essay-section-title">詩の主題</div>
+
+      <div class="essay-section-sub">眠りと死の二重性</div>
+      <p class="essay-body">「眠り（ruhn）」という語は、文字通りの夜の睡眠であると同時に、死の隠喩として機能しています。ドイツ語の墓碑銘にしばしば用いられる <em>Hier ruht…</em>（ここに眠る）という表現と響き合い、詩全体に静かな死の気配が漂います。</p>
+
+      <div class="essay-section-sub">夜の見張りと天使</div>
+      <p class="essay-body">中世ヨーロッパの都市では、夜警（Nachtwächter）が時刻を告げ安全を知らせる角笛を吹きながら街を巡回しました。この詩の「番人の角笛」はその伝統的なイメージを引き継ぎながら、第二連で「天使たちのささやく声」へと変容します。地上の番人の声が天上の天使の声と重なることで、夜の守護が神的な次元へと昇華されます。</p>
+
+      <div class="essay-section-sub">怯える心への慰め</div>
+      <p class="essay-body">「怯える心（zagendes Herz）」は、死や暗闇を恐れる人間の不安を象徴します。詩はその恐れを否定せず、むしろ正面から受け止めた上で「安心して（getrost）」「平和の中に（in Frieden）」という言葉で包み込みます。ランプを消すことは暗闇への降伏ではなく、神の守りへの信頼による自発的な委ねとして描かれています。</p>
+    </div>
+  </div>
 
 </div>
 
