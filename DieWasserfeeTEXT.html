@@ -229,6 +229,78 @@
     .trans-text { font-size: 10.5px; padding-left: 8px; padding-bottom: 0; }
   }
 
+  .essay {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 2px solid var(--rule);
+  }
+  .essay-header {
+    font-family: 'EB Garamond', serif;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .essay-section {
+    margin-bottom: 28px;
+  }
+  .essay-section-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .essay-section-sub {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--ink-mid);
+    margin: 14px 0 6px;
+  }
+  .essay-body {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.95;
+  }
+  .essay-quote {
+    display: block;
+    margin: 12px 0 12px 20px;
+    padding-left: 14px;
+    border-left: 2px solid var(--accent-soft);
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--ink-light);
+    line-height: 1.6;
+  }
+  .essay-quote small {
+    display: block;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 11px;
+    font-style: normal;
+    color: var(--ink-faint);
+    margin-top: 4px;
+  }
+
+  @media print {
+    .essay { margin-top: 5mm; padding-top: 3mm; }
+    .essay-header { font-size: 8px; margin-bottom: 2mm; }
+    .essay-section { margin-bottom: 3mm; }
+    .essay-section-title { font-size: 11px; margin-bottom: 1mm; padding-bottom: 0.5mm; }
+    .essay-section-sub { font-size: 10px; margin: 2mm 0 1mm; }
+    .essay-body { font-size: 8.5px; line-height: 1.7; }
+    .essay-quote { font-size: 10px; margin: 1.5mm 0 1.5mm 4mm; padding-left: 3mm; }
+    .essay-quote small { font-size: 7.5px; }
+  }
+
   .notes {
     margin-top: 48px;
     padding-top: 24px;
@@ -288,6 +360,51 @@
   <div class="piece-subtitle">ドイツ語ロマン派歌曲 · Op. 21</div>
 
   <main id="content"></main>
+
+  <div class="essay">
+    <div class="essay-header">詩の解説</div>
+
+    <div class="essay-section">
+      <div class="essay-section-title">作品概要</div>
+      <p class="essay-body">「水の精（Die Wasserfee）」は、19世紀ドイツ・ロマン派の歌曲レパートリーに属する詩に曲を付けた作品です。湖や海を舞台に、水中に棲む精霊（Wasserfee）の存在を詩人の語りかけによって描いています。全4連構成で、各連の末尾に同じリフレインが繰り返される有節歌曲（Strophenlied）的な形式を持ちます。</p>
+    </div>
+
+    <div class="essay-section">
+      <div class="essay-section-title">詩の構造と形式</div>
+      <p class="essay-body">各連は6〜8行で構成され、末尾に必ず次のリフレインが置かれます。</p>
+      <span class="essay-quote">Horch im See, die Wasserfee!<small>耳を澄ませ、湖に水の精が！</small></span>
+      <p class="essay-body">この繰り返しは単なる形式的なリフレインではなく、読者・聴衆を詩の世界へ引き込む「呪文」のような機能を果たしています。聴くたびに、水の精の存在がより現実味を帯びていきます。</p>
+    </div>
+
+    <div class="essay-section">
+      <div class="essay-section-title">各連の主題と詩的展開</div>
+
+      <div class="essay-section-sub">第一連 — 情景の設定</div>
+      <p class="essay-body">霧、カモメ、夕暮れ、波という自然描写から始まります。「果てしなく水の上を霧がただよい」という冒頭は、現実と幻想の境界が曖昧になる黄昏の時間と空間を丁寧に設定しています。波が「挨拶するように、逃げるように」動くという擬人化表現が、水の精の存在をそれとなく予告します。</p>
+
+      <div class="essay-section-sub">第二連 — 悲劇的な過去</div>
+      <p class="essay-body">「嵐に照らされて暗く波が輝き」という矛盾した美しさから始まり、波の正体への問いかけへと転じます。「それは魂たちか、地上の幸せを奪われて」という一節は、水の精たちがかつて人間であったこと、愛に傷つき水底に沈んだ者たちであることを示唆します。第一連の静けさとは対照的に、悲劇と死の影が色濃くなります。</p>
+
+      <div class="essay-section-sub">第三連 — 水の精の嘆き</div>
+      <p class="essay-body">詩の中で初めて水の精たち自身の声が直接引用されます。</p>
+      <span class="essay-quote">„Alles unser Leben ist nur Flehn, weinend Weben, singed Wehn, Klag' erheben und vergehn."<small>「私たちの命はただ懇願のみ、泣きながら織り、歌いながら漂い、嘆いて消えゆく」</small></span>
+      <p class="essay-body">「失われた天国のために」という表現は、もはや神の救済すら届かない場所にいることを示唆し、詩全体でもっとも深い絶望が語られる連です。</p>
+
+      <div class="essay-section-sub">第四連 — 誘惑と危険</div>
+      <p class="essay-body">一転して、水の精が生きた人間を水底へと誘う場面に移ります。「目を誘う欲望」「恋の苦しみ」「ハープのように鳴り響く波」など官能的なイメージが重なり、「来て戯れよう！赤いほほよ、感ずる心よ」という誘いの言葉で締めくくられます。この連は詩全体における「罠」の開示であり、第一連から積み重ねてきた美しい情景が、実は人を誘い込む幻であったことが明かされます。</p>
+    </div>
+
+    <div class="essay-section">
+      <div class="essay-section-title">詩の主題</div>
+      <p class="essay-body">この詩の核心は「美しさと危険の一致」です。水の精は、地上での愛に傷ついた悲劇の存在でありながら、同時に生者を死へと誘う危険な存在でもあります。彼女たちは加害者であると同時に被害者であり、その二重性がロマン派詩の典型的なモチーフ——ローレライやオンディーヌなどの水の精伝説——と共鳴しています。</p>
+      <p class="essay-body" style="margin-top:10px;">また「耳を澄ませ（Horch）」という繰り返しのリフレインは、詩人が読者に水の精の声を「聴く」よう促すと同時に、その声に耳を傾けること自体がすでに危険への第一歩であることを示唆しています。</p>
+    </div>
+
+    <div class="essay-section">
+      <div class="essay-section-title">言語的な特徴</div>
+      <p class="essay-body">詩の言語には意図的な「詩的逸脱」が見られます。<em>glühn</em>・<em>Flehn</em>・<em>vergehn</em> など語末を短縮した形式は韻を踏むための処理であり、<em>Sturmhell</em>（嵐＋明るい）のような造語は、矛盾した状態を一語に凝縮するロマン派詩特有の表現技法です。これらは詩のリズムと音楽性を高めると同時に、日常語を超えた「異界の言葉」という雰囲気を生み出しています。</p>
+    </div>
+  </div>
 
   <div class="notes">
     <div class="notes-header">注記</div>
