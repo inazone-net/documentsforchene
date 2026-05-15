@@ -235,6 +235,70 @@
     .w-orig { font-size: 17px; }
     .word-unit { padding: 0 5px; }
   }
+
+  .essay {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 2px solid var(--rule);
+  }
+  .essay-header {
+    font-family: 'EB Garamond', serif;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .essay-section {
+    margin-bottom: 28px;
+  }
+  .essay-section-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .essay-section-sub {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--ink-mid);
+    margin: 14px 0 6px;
+  }
+  .essay-body {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.95;
+  }
+  .essay-schema {
+    display: block;
+    margin: 12px 0 12px 20px;
+    padding: 10px 16px;
+    background: rgba(139,74,42,0.04);
+    border-left: 2px solid var(--accent-soft);
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--ink-mid);
+    line-height: 1.8;
+  }
+
+  @media print {
+    .essay { margin-top: 5mm; padding-top: 3mm; }
+    .essay-header { font-size: 8px; margin-bottom: 2mm; }
+    .essay-section { margin-bottom: 3mm; }
+    .essay-section-title { font-size: 11px; margin-bottom: 1mm; padding-bottom: 0.5mm; }
+    .essay-section-sub { font-size: 10px; margin: 2mm 0 1mm; }
+    .essay-body { font-size: 8.5px; line-height: 1.7; }
+    .essay-schema { font-size: 11px; margin: 1.5mm 0 1.5mm 4mm; padding: 1mm 3mm; }
+  }
 </style>
 </head>
 <body>
@@ -246,6 +310,42 @@
   <div class="piece-subtitle">詩篇117篇 · ドイツ語（ルター訳聖書）</div>
 
   <main id="content"></main>
+
+  <div class="essay">
+    <div class="essay-header">詩の解説</div>
+
+    <div class="essay-section">
+      <div class="essay-section-title">作品概要</div>
+      <p class="essay-body">「主をほめよ（Lobet den Herrn）」は、旧約聖書の詩篇第117篇をルター訳ドイツ語聖書（Lutherbibel）のテキストで歌ったものです。詩篇全150篇の中で最も短い篇であり、わずか2節（＋アレルヤ）で完結します。その簡潔さゆえに、ポリフォニー合唱や賛美歌など様々な形式で数多く作曲されてきました。</p>
+    </div>
+
+    <div class="essay-section">
+      <div class="essay-section-title">詩の構造と三者の関係</div>
+      <p class="essay-body">この詩篇の本文4行は、ヘブライ詩篇に典型的な対句法（parallelismus membrorum）によって構成されています。前半2行が呼びかけ、後半2行がその根拠という二段構造を持ちますが、前半の2行の内部にも精密な対応関係が組み込まれています。</p>
+      <span class="essay-schema">Lobet   den Herrn,  alle Heiden,<br>preiset ihn,        alle Völker!</span>
+      <p class="essay-body">この二行は、動詞・目的語・呼びかけの対象という三つの要素がそれぞれ対応しながら、しかし完全に同一ではないという形で展開します。</p>
+
+      <div class="essay-section-sub">動詞の対：Lobet と preiset</div>
+      <p class="essay-body"><em>Lobet</em>（ほめよ）はドイツ語 <em>loben</em> の命令形で、ヘブライ語原文の <em>hallelu</em>（ハレルヤの語幹）に相当します。<em>preiset</em>（たたえよ）はより能動的な称揚・讃美のニュアンスを持ちます。同じ賛美の行為を二つの異なる語で表すことで、賛美の行為そのものに深みと厚みが与えられます。</p>
+
+      <div class="essay-section-sub">目的語の対：den Herrn と ihn</div>
+      <p class="essay-body"><em>den Herrn</em>（主を）は神の称号を明示した形であり、「いかなる神であるか」を宣言します。二行目の <em>ihn</em>（彼を）はその繰り返しを避けた代名詞ですが、この省略は単なる文体上の工夫ではありません。一行目で「主（Herr）」として名指しされた神が、二行目では「彼（ihn）」として親密な関係の中に置かれます。称号から人称へというこの移行は、賛美の対象が抽象的な神概念ではなく、民との関係の中に存在する人格的な神であることを示しています。</p>
+
+      <div class="essay-section-sub">呼びかけの対：alle Heiden と alle Völker</div>
+      <p class="essay-body">この二語の関係こそが、詩篇117篇の神学的核心です。<em>Heiden</em>（ヘブライ語原文：<em>goyim</em> / גּוֹיִם）は、旧約聖書においてイスラエルの民ではない「異邦人・諸国の民」を指す語で、ルター訳では宗教的他者性のニュアンスを帯びます。<em>Völker</em>（ヘブライ語原文：<em>leʾummim</em> / לְאֻמִּים）は、より中立的な「諸民族・人々」を意味します。二行をあわせて読むと、賛美の呼びかけは「イスラエルの外にある異邦人」から「地上のすべての人々」へと拡張されていきます。これは単なる修辞的繰り返しではなく、賛美の円環が広がっていく運動です。</p>
+    </div>
+
+    <div class="essay-section">
+      <div class="essay-section-title">Herrn と Heiden の神学的緊張</div>
+      <p class="essay-body">「すべての異邦人よ、<em>Herrn</em>（主）をほめよ」という呼びかけには、旧約聖書の文脈において際立った緊張が宿っています。<em>Herr</em> はヘブライ語 <em>YHWH</em>（ヤハウェ）の訳語であり、本来イスラエルと契約を結んだイスラエルの神の固有名です。その神を、契約の外にいる <em>Heiden</em> が賛美するよう命じられている——この事実は、神の恵みが契約の民を超えて異邦人にも及ぶという普遍的救済の思想を端的に表しています。</p>
+      <p class="essay-body" style="margin-top:10px;">後半2行の「なぜなら、主の恵みと真理はとこしえまでも私たちの上に満ちあふれる」における「私たちの上に（über uns）」という表現も、この観点から重要です。「私たち」とは誰か——それは一行目・二行目で呼びかけられた <em>Heiden</em> と <em>Völker</em> を含む、賛美に加わるすべての者です。<em>Herrn</em> を賛美することへの招きを受け入れた瞬間、<em>Heiden</em> もまた「私たち」の側に入ります。賛美の行為そのものが、異邦人をヤハウェの民として包み込む——詩篇117篇はその構造をわずか4行で完成させています。</p>
+    </div>
+
+    <div class="essay-section">
+      <div class="essay-section-title">アレルヤ唱</div>
+      <p class="essay-body"><em>Alleluja</em> はヘブライ語 <em>hallelu yah</em>（「ヤハウェをほめよ」）の転写です。<em>Lobet den Herrn</em> で始まった呼びかけが、最後に再びヘブライ語の呼びかけへと帰着することで、詩篇は一つの円環を完成させます。異邦人と諸民族を経由して広がった賛美が、神の固有名そのものへと収束する——この構造が、詩篇117篇の短さの中に宿る神学的な完結性を支えています。</p>
+    </div>
+  </div>
 
 </div>
 
